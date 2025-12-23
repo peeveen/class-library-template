@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 #if (netframework)
 using Xunit;
 
