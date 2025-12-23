@@ -1,0 +1,123 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "Steven Frew",
+	"classifications": ["Common", "Class Library", "DLL"],
+	"identity": "Peeveen.Templates.DotNet.ClassLibrary",
+	"name": "Peeveen's .NET Class Library Solution",
+	"shortName": "peeveenclasslibsln",
+	"tags": { "language": "C#", "type": "solution" },
+	"sourceName": "Peeveen.ClassLibrary",
+	"defaultName": "Peeveen.ClassLibrary",
+	"sources": [
+		{
+			"rename": {
+				"gitignore": ".gitignore"
+			},
+			"modifiers": [
+				{
+					"condition": "netframework",
+					"exclude": ["Peeveen.ClassLibrary.Test/Usings.cs"]
+				}
+			]
+		}
+	],
+	"symbols": {
+		"default_netcore": {
+			"type": "generated",
+			"datatype": "text",
+			"generator": "constant",
+			"parameters": {
+				"value": "net10.0"
+			},
+			"replaces": "default_netcore",
+			"description": "The most up-to-date .NET Core version, for the test and benchmark projects."
+		},
+		"sdk_version": {
+			"type": "generated",
+			"datatype": "text",
+			"defaultValue": "10.0",
+			"description": "Version of .NET SDK to use.",
+			"generator": "switch",
+			"replaces": "sdk_version",
+			"parameters": {
+				"evaluator": "C++",
+				"datatype": "string",
+				"cases": [
+					{
+						"condition": "(framework == 'net6.0')",
+						"value": "6.0"
+					},
+					{
+						"condition": "(framework == 'net7.0')",
+						"value": "7.0"
+					},
+					{
+						"condition": "(framework == 'net8.0')",
+						"value": "8.0"
+					},
+					{
+						"condition": "(framework == 'net9.0')",
+						"value": "9.0"
+					},
+					{
+						"condition": "",
+						"value": "10.0"
+					}
+				]
+			}
+		},
+		"framework": {
+			"type": "parameter",
+			"description": "The target framework for the project.",
+			"datatype": "choice",
+			"choices": [
+				{
+					"choice": "net6.0",
+					"description": "Target .NET 6.0"
+				},
+				{
+					"choice": "net7.0",
+					"description": "Target .NET 7.0"
+				},
+				{
+					"choice": "net8.0",
+					"description": "Target .NET 8.0"
+				},
+				{
+					"choice": "net9.0",
+					"description": "Target .NET 9.0"
+				},
+				{
+					"choice": "net10.0",
+					"description": "Target .NET 10.0"
+				},
+				{
+					"choice": "netstandard2.0",
+					"description": "Target .NET Standard 2.0"
+				},
+				{
+					"choice": "netstandard2.1",
+					"description": "Target .NET Standard 2.1"
+				},
+				{
+					"choice": "net48",
+					"description": "Target .NET Framework 4.8"
+				},
+				{
+					"choice": "net481",
+					"description": "Target .NET Framework 4.8.1"
+				}
+			],
+			"replaces": "main_project_framework",
+			"defaultValue": "net9.0"
+		},
+		"netcore": {
+			"type": "computed",
+			"value": "framework != \"net48\" && framework != \"net481\" && framework != \"netstandard2.0\" && framework != \"netstandard2.1\""
+		},
+		"netframework": {
+			"type": "computed",
+			"value": "framework == \"net48\" || framework == \"net481\""
+		}
+	}
+}

@@ -1,0 +1,8 @@
+include:
+  - project: peeveen/development/common-ci-scripts
+    file: dotnet-template-build.yml
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  PROJECT_NAME: Peeveen.Templates.DotNet.ClassLibrarySolution
+  DEPLOYMENT_TYPE: nuget

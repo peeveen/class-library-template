@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+<!--#if (netframework)-->
+    <TargetFramework>main_project_framework</TargetFramework>
+<!--#else-->
+    <TargetFramework>default_netcore</TargetFramework>
+<!--#endif -->
+<!--#if (netcore) -->
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+<!--#endif -->
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Peeveen.Test" Version="1.*"/>
+    <PackageReference Include="Peeveen.CodeAnalysis" Version="*">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	    <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+<!--#if (netframework) -->
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="16.6.1" />
+<!--#endif -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Peeveen.ClassLibrary\Peeveen.ClassLibrary.csproj" />
+  </ItemGroup>
+</Project>
